@@ -1,0 +1,25 @@
+{
+  "name": "cordova-plugin-contacts-mock",
+  "version": "0.1.0-dev",
+  "description": "mock contacts plugin for web-based development",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "src/js/index.js",
+  "author": "Meir Rotstein",
+  "license": "ISC",
+  "browser": {
+    "cordova/argscheck": "./lib/argscheck.js",
+    "cordova/utils": "./lib/utils.js",
+    "cordova/exec": "./src/js/exec.js"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.1",
+    "cordova-js": "^4.2.0",
+    "cordova-plugin-contacts": "^2.2.1",
+    "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-watch": "^4.3.11"
+  }
+}
