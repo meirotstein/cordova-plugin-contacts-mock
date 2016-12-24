@@ -1,7 +1,10 @@
-var LOCAL_STORAGE_KEY = 'ionic.contacts.mock.data';
+var LOCAL_STORAGE_KEY = 'cordova.contacts.mock.data';
 
 var get = function() {
-  return localStorage.getItem(LOCAL_STORAGE_KEY) || [];
+    var data = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return data ?
+        JSON.parse(data) :
+        [];
 };
 
 var set = function(data) {

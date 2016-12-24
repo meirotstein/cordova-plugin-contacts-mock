@@ -3,7 +3,7 @@
   "version": "0.1.0-dev",
   "description": "mock contacts plugin for web-based development",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/jasmine-node/bin/jasmine-node spec"
   },
   "main": "src/js/index.js",
   "author": "Meir Rotstein",
@@ -20,6 +20,7 @@
     "gulp": "^3.9.1",
     "gulp-browserify": "^0.5.1",
     "gulp-rename": "^1.2.2",
-    "gulp-watch": "^4.3.11"
+    "gulp-watch": "^4.3.11",
+    "jasmine-node": "^1.14.5"
   }
 }

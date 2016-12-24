@@ -2320,10 +2320,13 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 }).call(this,require("b55mWE"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/../../node_modules/ieee754/index.js","/../../node_modules/ieee754")
 },{"b55mWE":15,"buffer":14}],17:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-var LOCAL_STORAGE_KEY = 'ionic.contacts.mock.data';
+var LOCAL_STORAGE_KEY = 'cordova.contacts.mock.data';
 
 var get = function() {
-  return localStorage.getItem(LOCAL_STORAGE_KEY) || [];
+    var data = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return data ?
+        JSON.parse(data) :
+        [];
 };
 
 var set = function(data) {
@@ -2407,5 +2410,5 @@ module.exports = exec;
 
 
 })(window);
-}).call(this,require("b55mWE"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_e402370.js","/")
+}).call(this,require("b55mWE"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_e8d9efe2.js","/")
 },{"../../lib/Contact.js":1,"../../lib/ContactAddress.js":2,"../../lib/ContactError.js":3,"../../lib/ContactField.js":4,"../../lib/ContactFieldType.js":5,"../../lib/ContactFindOptions.js":6,"../../lib/ContactName.js":7,"../../lib/ContactOrganization.js":8,"../../lib/contacts.js":10,"b55mWE":15,"buffer":14}]},{},[18])
