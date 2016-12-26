@@ -196,7 +196,7 @@ var actions = {
  */
 var exec = function(successCB, failCB, service, action, args) {
     if(typeof actions[action] === 'function') {
-        return actions[action].call(this, successCB, failCB, args)
+        return actions[action].call(this, successCB, failCB, args);
     }
     throw new Error('Contacts Mock: ' + action + ' is not implemented!');
 };

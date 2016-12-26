@@ -2518,7 +2518,7 @@ var actions = {
  */
 var exec = function(successCB, failCB, service, action, args) {
     if(typeof actions[action] === 'function') {
-        return actions[action].call(this, successCB, failCB, args)
+        return actions[action].call(this, successCB, failCB, args);
     }
     throw new Error('Contacts Mock: ' + action + ' is not implemented!');
 };
@@ -2545,5 +2545,5 @@ module.exports = exec;
 
 
 })(window);
-}).call(this,require("b55mWE"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_278a1ce1.js","/")
+}).call(this,require("b55mWE"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_cec2e5f9.js","/")
 },{"../../lib/Contact.js":1,"../../lib/ContactAddress.js":2,"../../lib/ContactError.js":3,"../../lib/ContactField.js":4,"../../lib/ContactFieldType.js":5,"../../lib/ContactFindOptions.js":6,"../../lib/ContactName.js":7,"../../lib/ContactOrganization.js":8,"../../lib/contacts.js":10,"b55mWE":15,"buffer":14}]},{},[18])
