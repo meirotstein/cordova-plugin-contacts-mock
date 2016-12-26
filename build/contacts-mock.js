@@ -2345,6 +2345,51 @@ var deepExtend = function(destination, source) {
     }
 };
 
+var contains = function(source, target) {
+    if(source instanceof Array) {
+        return source.includes(target);
+    }
+    return String(source).indexOf(target) >= 0;
+};
+
+var isArray = function(object) {
+    return object instanceof Array;
+};
+
+var isPlainObject = function(object) {
+    return object && typeof object === 'object' && !isArray(object);
+};
+
+/**
+ * normalize contact according to platform
+ * I don't really know what should be the complete normalization rules - what I do know is:
+ * (1) The type letter cases should be different from android to other platforms in case where
+ * the type was given in uppercase (test: spec 7.4)
+ * (2) empty value in array should lead to element deletion (test: contacts.spec.22)
+ */
+var normalize = function(contact) {
+  for(prop in contact) {
+      var value = contact[prop];
+      if(isArray(value)) {
+          contact[prop] = value.filter(function(el){
+              if(el.hasOwnProperty('value') && (el.value === undefined || el.value === null || String(el.value) === "")) {
+                  return false;
+              }
+              normalize(el);
+              return true;
+          });
+      } else if(prop === 'type' && value) {
+          if(/^[A-Z]+$/.test(value)){
+              if(cordova.platformId === 'android') {
+                  contact[prop] = value[0] + value.slice(1).toLowerCase();
+              } else {
+                  contact[prop] = value.toLowerCase();
+              }
+          }
+      }
+  }
+};
+
 var actions = {
     save: function(successCB, failCB, args) {
         var data = get();
@@ -2352,10 +2397,13 @@ var actions = {
         var contactIdx = -1;
         if(contact.id) {    //update if exists
             contactIdx = data.findIndex(function(c){
-                c.id === contact.id;
+                return c.id === contact.id;
             });
-            if(contactIdx >= 0) {
-                deepExtend(contact, data[contactIdx]);
+            if(contactIdx > -1) {
+                deepExtend(data[contactIdx], contact);
+                contact = data[contactIdx];
+            } else {
+                data[data.length] = contact;
             }
         } else {    //find the closest available id
             var candidateId = 1;
@@ -2365,11 +2413,98 @@ var actions = {
                 }
             });
             contact.id = candidateId;
+            data[data.length] = contact;
         }
-        contactIdx = contactIdx >= 0 ? contactIdx : data.length;
-        data[contactIdx] = contact;
+        normalize(contact);
         set(data);
         successCB(contact);
+    },
+
+    remove: function (successCB, failCB, args) {
+        var data = get();
+        var id = args[0] || -1;
+
+        var contactIdx = data.findIndex(function(c){
+            return c.id === id;
+        });
+
+        if(contactIdx > -1) {
+            data.splice(contactIdx, 1);
+            set(data);
+            successCB();
+        } else {
+            failCB(ContactError.UNKNOWN_ERROR);
+        }
+    },
+    
+    search: function (successCB, failCB, args) {
+        var fields = args[0];
+        var options = args[1] || {};
+        var filterStr = options.filter || "";
+        var found = [];
+
+        var isInFields = (fields === "*") ? function() { return true; } : function(field) { return contains(fields, field); };
+
+        var callback = function(c) {
+
+            /**
+             * Deep search heuristics (may be a bit different from mobile implementation):
+             * -->  property is in search fields
+             *      --> property value is primitive
+             *          --> check if it contains the filter value
+             *      --> property value is Array
+             *          --> check if one of the Array objects has a value property which contains the filter value (e.g. phoneNumbers)
+             *      --> property value is object
+             *          --> check if one of its immediate children contains the filter value (e.g. name)
+             * -->  property is not in search fields
+             *      --> property value is object
+             *          --> recursively search it
+             *      --> return false
+             *
+             * @param {Contact} obj currently searched contact
+             * @returns {Boolean}
+             */
+            function deepSearch(obj) {
+                for (var prop in obj) {
+                    var value = obj[prop];
+                    if (isInFields(prop)) {
+                        if (isArray(value)) {
+                            return value.find(function (v) {
+                                return contains(v.value, filterStr);
+                            });
+                        } else if(isPlainObject(value)) {
+                            for (var _prop in value){
+                                if(contains(value[_prop], filterStr)){
+                                    return true;
+                                }
+                            }
+                        } else {
+                            if(contains(value, filterStr)){
+                                return true;
+                            }
+                        }
+                    } else if (isPlainObject(value)) {
+                        if(deepSearch(value)) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
+            return deepSearch(c);
+        };
+
+        var data = get();
+
+        if(options.multiple) {
+            found = data.filter(callback);
+        } else {
+            found = data.find(callback);
+            found = found ? [found] : [];
+        }
+
+        successCB(found);
     }
 };
 
@@ -2410,5 +2545,5 @@ module.exports = exec;
 
 
 })(window);
-}).call(this,require("b55mWE"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_e8d9efe2.js","/")
+}).call(this,require("b55mWE"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_278a1ce1.js","/")
 },{"../../lib/Contact.js":1,"../../lib/ContactAddress.js":2,"../../lib/ContactError.js":3,"../../lib/ContactField.js":4,"../../lib/ContactFieldType.js":5,"../../lib/ContactFindOptions.js":6,"../../lib/ContactName.js":7,"../../lib/ContactOrganization.js":8,"../../lib/contacts.js":10,"b55mWE":15,"buffer":14}]},{},[18])
