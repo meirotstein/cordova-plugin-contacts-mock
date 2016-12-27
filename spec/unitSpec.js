@@ -36,6 +36,6 @@ for(prop in global.window) {
 //require and execute original cordova-plugin-contacts tests
 var cordovaPluginTests = require('../node_modules/cordova-plugin-contacts/tests/tests.js');
 
-describe("Hello World Server", function() {
+describe("Run cordova-plugin-contacts tests on top of the mock service", function() {
     cordovaPluginTests.defineAutoTests();
 });
