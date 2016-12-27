@@ -23,7 +23,7 @@
     "cordova/exec": "./src/js/exec.js"
   },
   "devDependencies": {
-    "cordova-plugin-contacts": "https://github.com/meirotstein/cordova-plugin-contacts.git",
+    "cordova-plugin-contacts": "git@github.com:apache/cordova-plugin-contacts.git",
     "gulp": "^3.9.1",
     "gulp-browserify": "^0.5.1",
     "gulp-rename": "^1.2.2",
