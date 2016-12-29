@@ -2,6 +2,8 @@
   "name": "cordova-plugin-contacts-mock",
   "version": "1.0.0",
   "description": "mock cordova contacts plugin for web-based development",
+  "repository": "meirotstein/cordova-plugin-contacts-mock",
+  "license": "MIT",
   "scripts": {
     "test": "./node_modules/jasmine-node/bin/jasmine-node spec"
   },
