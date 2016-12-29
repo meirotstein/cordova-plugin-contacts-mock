@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-contacts-mock",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "mock cordova contacts plugin for web-based development",
   "repository": "meirotstein/cordova-plugin-contacts-mock",
   "license": "MIT",
