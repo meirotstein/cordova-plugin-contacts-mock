@@ -1,5 +1,6 @@
 [![Built with Gulp](https://raw.github.com/cyparu/artwork/master/builtwith.png)](http://gulpjs.com)
 [![Build Status](https://travis-ci.org/meirotstein/cordova-plugin-contacts-mock.svg?branch=master)](https://travis-ci.org/meirotstein/cordova-plugin-contacts-mock)
+[![npm version](https://badge.fury.io/js/cordova-plugin-contacts-mock.svg)](https://badge.fury.io/js/cordova-plugin-contacts-mock)
 
 # cordova-plugin-contacts-mock
 
