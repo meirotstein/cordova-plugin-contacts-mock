@@ -4,7 +4,7 @@
 
 # cordova-plugin-contacts-mock
 
-When developing a cordova based application - such as [ionic](https://ionicframework.com/) - the major development is mostly done in a local browser-based environment such a [ionic serve](https://ionicframework.com/docs/v2/cli/serve/).
+When developing a cordova based application - such as [ionic](https://ionicframework.com/) - the major development is mostly done in a local browser-based environment such as [ionic serve](https://ionicframework.com/docs/v2/cli/serve/).
 
 It is very fast and comfortable developent environment on the one hand, however it is lack with some native services on the other - this makes the development quite harder.
 
