@@ -64,8 +64,6 @@ cordova-plugin-contacts-mock is using the browser local storage to read and save
 ```
 You can use the browser dev tools to edit it youself or simply [create and save](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-contacts/#save-example) it by code.
 
-![Chrome DevTools](http://imgh.us/Screen_Shot_2016-12-27_at_1.21.09_AM.png?raw=true)
-
 ### Notes
 
 (1) Contacts **must** be saved in array structure
