@@ -32,7 +32,7 @@ As you dont want this script to run on the device itself it is recommended to cr
 Usage is the same as described in the [cordova documentation](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-contacts/#navigatorcontacts) and in [$cordovaContacts](http://ngcordova.com/docs/plugins/contacts/)
 
 ### Contacts Data
-cordova-plugin-contacts-mock is using the browser local storage to read and save the contacts data - the data is saved under the cordova.contacts.mock.data key on the follwing [Contact](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-contacts/#contact) structure:
+cordova-plugin-contacts-mock is using the browser local storage to read and save the contacts data - the data is saved under the `cordova.contacts.mock.data` key on the follwing [Contact](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-contacts/#contact) structure:
 ```javascript
 [{
     "id": "123",
